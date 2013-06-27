@@ -83,6 +83,21 @@
    #:frexp
    #:modf))
 
+; First attempt at adding time.h to our standard C library.
+; - Jovan 6/26/2013
+
+(deflibcpkg #:vacietis.libc.time.h
+    (:export
+     #:clock
+     #:time
+     #:difftime
+     #:gmtime
+     #:localtime
+     #:ctime
+     #:asctime
+     #:strftime))
+
+
 (deflibcpkg #:vacietis.libc.ctype.h
   (:export
    #:isspace
