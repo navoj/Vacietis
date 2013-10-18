@@ -1,0 +1,416 @@
+(|SYSTEM|::|VERSION| '(20080430.))
+#0Y_ #0Y |CHARSET|::|UTF-8|
+#Y(#:|1 1 (IN-PACKAGE #:VACIETIS)-1|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA 31 F6 0F 01 19 01)
+   ("VACIETIS" |COMMON-LISP|::|*PACKAGE*|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|2 2 (IN-READTABLE VACIETIS)-2-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 0F 02 3E 19 01)
+   (|VACIETIS|::|VACIETIS| |EDITOR-HINTS.NAMED-READTABLES|::|ENSURE-READTABLE|
+    |COMMON-LISP|::|*READTABLE*|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|2 2 (IN-READTABLE VACIETIS)-2-2|
+   #25Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 1F 08 6B 01 6B 02 30 03 19 01 19
+        01)
+   (:|SWANK| |COMMON-LISP|::|*PACKAGE*| |COMMON-LISP|::|*READTABLE*|
+    |EDITOR-HINTS.NAMED-READTABLES|::|%FROB-SWANK-READTABLE-ALIST|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|4 43 (defpackage #:vacietis.libc.errno.h (:use #:cl #:named-readtables ...) ...)-3-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.ERRNO.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|4 43 (defpackage #:vacietis.libc.errno.h (:use #:cl #:named-readtables ...) ...)-3-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS")
+    "VACIETIS.LIBC.ERRNO.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|4 43 (defpackage #:vacietis.libc.errno.h (:use #:cl #:named-readtables ...) ...)-3-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.ERRNO.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|4 43 (defpackage #:vacietis.libc.errno.h (:use #:cl #:named-readtables ...) ...)-3-4|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("ERRNO" "eperm" "enoent" "esrch" "eintr" "eio" "enxio" "e2big" "enoexec"
+     "ebadf" "echild" "eagain" "enomem" "eacces" "efault" "enotblk" "ebusy"
+     "eexist" "exdev" "enodev" "enotdir" "eisdir" "einval" "enfile" "emfile"
+     "enotty" "etxtbsy" "efbig" "enospc" "espipe" "erofs" "emlink" "epipe"
+     "edom" "erange")
+    "VACIETIS.LIBC.ERRNO.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|4 43 (defpackage #:vacietis.libc.errno.h (:use #:cl #:named-readtables ...) ...)-3-5|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01) ("VACIETIS.LIBC.ERRNO.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|45 50 (defpackage #:vacietis.libc.stddef.h (:use #:cl #:named-readtables ...) ...)-4-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.STDDEF.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|45 50 (defpackage #:vacietis.libc.stddef.h (:use #:cl #:named-readtables ...) ...)-4-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS")
+    "VACIETIS.LIBC.STDDEF.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|45 50 (defpackage #:vacietis.libc.stddef.h (:use #:cl #:named-readtables ...) ...)-4-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.STDDEF.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|45 50 (defpackage #:vacietis.libc.stddef.h (:use #:cl #:named-readtables ...) ...)-4-4|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("null" "OFFSETOF") "VACIETIS.LIBC.STDDEF.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|45 50 (defpackage #:vacietis.libc.stddef.h (:use #:cl #:named-readtables ...) ...)-4-5|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01)
+   ("VACIETIS.LIBC.STDDEF.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|52 58 (defmacro deflibcpkg (name &rest other-opts) ...)-5|
+   #23Y(00 00 00 00 00 00 00 00 20 01 DA 2F 01 DA DC DD 72 4C 32 9C C5 19 01)
+   (|VACIETIS|::|DEFLIBCPKG| |SYSTEM|::|REMOVE-OLD-DEFINITIONS|
+    #Y(|VACIETIS|::|DEFLIBCPKG|
+       #43Y(00 00 00 00 02 00 00 00 26 03 AE DA DA 64 2D 04 01 1D 13 9F 5C 78
+            A0 5C 79 DD AE DE DF E0 A2 5D 5D 5D 5D 5D 19 05 AE 2F 02 19 03)
+       (2. |SYSTEM|::|LIST-LENGTH-IN-BOUNDS-P| |SYSTEM|::|MACRO-CALL-ERROR|
+        |COMMON-LISP|::|DEFPACKAGE|
+        (:|USE| #:|CL| #:|NAMED-READTABLES| #:|VACIETIS|
+         #:|VACIETIS.LIBC.ERRNO.H| #:|VACIETIS.LIBC.STDDEF.H|)
+        (:|IMPORT-FROM| #:|VACIETIS| #:|DEFINE| #:|DEFUN/1| #:|LIBC-DIR|
+         #:|LOAD-LIBC-FILE|)
+        (:|IMPORT-FROM| #:|VACIETIS.C| #:|DEREF*| #:|MKPTR&|))
+       (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|)
+       (|SYSTEM|::|<MACRO-FORM>| |SYSTEM|::|<ENV-ARG>|) |COMMON-LISP|::|NIL| 1)
+    (|VACIETIS|::|NAME| |COMMON-LISP|::|&REST| |VACIETIS|::|OTHER-OPTS|))
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.MATH.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS"
+     "VACIETIS.LIBC.ERRNO.H" "VACIETIS.LIBC.STDDEF.H")
+    "VACIETIS.LIBC.MATH.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.MATH.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-4|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFUN/1" "VACIETIS" "VACIETIS.LIBC.MATH.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-5|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LIBC-DIR" "VACIETIS" "VACIETIS.LIBC.MATH.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-6|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LOAD-LIBC-FILE" "VACIETIS" "VACIETIS.LIBC.MATH.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-7|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEREF*" "VACIETIS.C" "VACIETIS.LIBC.MATH.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-8|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("MKPTR&" "VACIETIS.C" "VACIETIS.LIBC.MATH.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-9|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("huge_val" "SIN" "COS" "TAN" "ASIN" "ACOS" "ATAN" "ATAN2" "SINH" "COSH"
+     "TANH" "SQRT" "EXP" "POW" "LOG" "LOG10" "FABS" "FLOOR" "CEIL" "FMOD"
+     "LDEXP" "FREXP" "MODF")
+    "VACIETIS.LIBC.MATH.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|60 84 (deflibcpkg #:vacietis.libc.math.h (:export #:HUGE_VAL #:sin ...))-6-10|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01) ("VACIETIS.LIBC.MATH.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.TIME.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS"
+     "VACIETIS.LIBC.ERRNO.H" "VACIETIS.LIBC.STDDEF.H")
+    "VACIETIS.LIBC.TIME.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.TIME.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-4|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFUN/1" "VACIETIS" "VACIETIS.LIBC.TIME.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-5|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LIBC-DIR" "VACIETIS" "VACIETIS.LIBC.TIME.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-6|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LOAD-LIBC-FILE" "VACIETIS" "VACIETIS.LIBC.TIME.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-7|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEREF*" "VACIETIS.C" "VACIETIS.LIBC.TIME.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-8|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("MKPTR&" "VACIETIS.C" "VACIETIS.LIBC.TIME.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-9|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("CLOCK" "TIME" "DIFFTIME" "GMTIME" "LOCALTIME" "CTIME" "ASCTIME"
+     "STRFTIME")
+    "VACIETIS.LIBC.TIME.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|86 98 (deflibcpkg #:vacietis.libc.time.h (:export #:clock #:time ...))-7-10|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01) ("VACIETIS.LIBC.TIME.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.CTYPE.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS"
+     "VACIETIS.LIBC.ERRNO.H" "VACIETIS.LIBC.STDDEF.H")
+    "VACIETIS.LIBC.CTYPE.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.CTYPE.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-4|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFUN/1" "VACIETIS" "VACIETIS.LIBC.CTYPE.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-5|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LIBC-DIR" "VACIETIS" "VACIETIS.LIBC.CTYPE.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-6|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LOAD-LIBC-FILE" "VACIETIS" "VACIETIS.LIBC.CTYPE.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-7|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEREF*" "VACIETIS.C" "VACIETIS.LIBC.CTYPE.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-8|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("MKPTR&" "VACIETIS.C" "VACIETIS.LIBC.CTYPE.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-9|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("ISSPACE" "ISALNUM" "ISALPHA" "ISCNTRL" "ISDIGIT" "ISGRAPH" "ISLOWER"
+     "ISPRINT" "ISPUNCT" "ISUPPER" "ISXDIGIT" "TOUPPER" "TOLOWER")
+    "VACIETIS.LIBC.CTYPE.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|101 115 (deflibcpkg #:vacietis.libc.ctype.h (:export #:isspace #:isalnum ...))-8-10|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01) ("VACIETIS.LIBC.CTYPE.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.STRING.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS"
+     "VACIETIS.LIBC.ERRNO.H" "VACIETIS.LIBC.STDDEF.H")
+    "VACIETIS.LIBC.STRING.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.STRING.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-4|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFUN/1" "VACIETIS" "VACIETIS.LIBC.STRING.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-5|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LIBC-DIR" "VACIETIS" "VACIETIS.LIBC.STRING.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-6|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LOAD-LIBC-FILE" "VACIETIS" "VACIETIS.LIBC.STRING.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-7|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEREF*" "VACIETIS.C" "VACIETIS.LIBC.STRING.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-8|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("MKPTR&" "VACIETIS.C" "VACIETIS.LIBC.STRING.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-9|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("STRERROR" "STRRCHR" "STRSPN" "STRPBRK" "STRSTR" "STRTOK" "STRTOK_R"
+     "STRCPY" "STRNCPY" "STRCAT" "STRNCAT" "STRCHR" "STRCMP" "STRNCMP" "STRLEN"
+     "STRCSPN" "MEMCPY" "MEMMOVE" "MEMSET" "MEMCHR" "MEMCMP")
+    "VACIETIS.LIBC.STRING.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|117 139 (deflibcpkg #:vacietis.libc.string.h (:export #:strerror #:strrchr ...))-9-10|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01)
+   ("VACIETIS.LIBC.STRING.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.STDARG.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS"
+     "VACIETIS.LIBC.ERRNO.H" "VACIETIS.LIBC.STDDEF.H")
+    "VACIETIS.LIBC.STDARG.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.STDARG.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-4|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFUN/1" "VACIETIS" "VACIETIS.LIBC.STDARG.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-5|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LIBC-DIR" "VACIETIS" "VACIETIS.LIBC.STDARG.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-6|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LOAD-LIBC-FILE" "VACIETIS" "VACIETIS.LIBC.STDARG.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-7|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEREF*" "VACIETIS.C" "VACIETIS.LIBC.STDARG.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-8|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("MKPTR&" "VACIETIS.C" "VACIETIS.LIBC.STDARG.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-9|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("VA_LIST" "VA_START" "__VA_ARG" "VA_END" "VA_COPY")
+    "VACIETIS.LIBC.STDARG.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|141 147 (deflibcpkg #:vacietis.libc.stdarg.h (:export #:va_list #:va_start ...))-10-10|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01)
+   ("VACIETIS.LIBC.STDARG.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.STDLIB.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EA 3E 19 01)
+   (("ABORT") "VACIETIS.LIBC.STDLIB.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-3|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS"
+     "VACIETIS.LIBC.ERRNO.H" "VACIETIS.LIBC.STDDEF.H")
+    "VACIETIS.LIBC.STDLIB.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-4|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.STDLIB.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-5|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFUN/1" "VACIETIS" "VACIETIS.LIBC.STDLIB.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-6|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LIBC-DIR" "VACIETIS" "VACIETIS.LIBC.STDLIB.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-7|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LOAD-LIBC-FILE" "VACIETIS" "VACIETIS.LIBC.STDLIB.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-8|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEREF*" "VACIETIS.C" "VACIETIS.LIBC.STDLIB.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-9|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("MKPTR&" "VACIETIS.C" "VACIETIS.LIBC.STDLIB.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-10|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("MALLOC" "CALLOC" "REALLOC" "FREE" "rand_max" "RAND" "SRAND" "ATOI" "ATOL"
+     "ATOLL" "ATOF" "STRTOD" "STRTOF" "STRTOL" "STRTOLL" "STRTOUL" "STRTOULL"
+     "exit_success" "exit_failure" "ABORT" "EXIT" "ATEXIT" "GETENV" "SETENV"
+     "SYSTEM" "ABS" "LABS" "LLABS" "DIV" "LDIV" "BSEARCH" "QSORT")
+    "VACIETIS.LIBC.STDLIB.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|149 184 (deflibcpkg #:vacietis.libc.stdlib.h (:shadow #:abort) ...)-11-11|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01)
+   ("VACIETIS.LIBC.STDLIB.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-1|
+   #18Y(00 00 00 00 00 00 00 00 20 01 DA 01 04 31 F0 3E 19 01)
+   ("VACIETIS.LIBC.STDIO.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-2|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EA 3E 19 01)
+   (("REMOVE") "VACIETIS.LIBC.STDIO.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-3|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("ABORT" "VACIETIS.LIBC.STDLIB.H" "VACIETIS.LIBC.STDIO.H"
+    |SYSTEM|::|SHADOWING-IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-4|
+   #17Y(00 00 00 00 00 00 00 00 20 01 DA DB 31 EC 3E 19 01)
+   (("COMMON-LISP" "EDITOR-HINTS.NAMED-READTABLES" "VACIETIS"
+     "VACIETIS.LIBC.ERRNO.H" "VACIETIS.LIBC.STDDEF.H")
+    "VACIETIS.LIBC.STDIO.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-5|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFINE" "VACIETIS" "VACIETIS.LIBC.STDIO.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-6|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEFUN/1" "VACIETIS" "VACIETIS.LIBC.STDIO.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-7|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LIBC-DIR" "VACIETIS" "VACIETIS.LIBC.STDIO.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-8|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("LOAD-LIBC-FILE" "VACIETIS" "VACIETIS.LIBC.STDIO.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-9|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("DEREF*" "VACIETIS.C" "VACIETIS.LIBC.STDIO.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-10|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("MKPTR&" "VACIETIS.C" "VACIETIS.LIBC.STDIO.H" |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-11|
+   #20Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 DC 2D 04 03 3E 19 01)
+   ("STRERROR" "VACIETIS.LIBC.STRING.H" "VACIETIS.LIBC.STDIO.H"
+    |SYSTEM|::|IMPORT-CERROR|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-12|
+   #19Y(00 00 00 00 00 00 00 00 20 01 DA DB 63 2D 03 02 3E 19 01)
+   (("eof" "STDIN" "STDOUT" "STDERR" "CLEARERR" "FEOF" "FERROR" "PERROR"
+     "FOPEN" "FFLUSH" "FCLOSE" "FREOPEN" "REMOVE" "RENAME" "TMPFILE" "TMPNAM"
+     "SETBUF" "SETVBUF" "FGETC" "GETC" "GETCHAR" "FPUTC" "PUTC" "PUTCHAR"
+     "FGETS" "GETS" "FPUTS" "PUTS" "UNGETC" "FREAD" "FWRITE" "seek_set"
+     "seek_cur" "seek_end" "FSEEK" "FTELL" "REWIND" "FGETPOS" "FSETPOS"
+     "FPRINTF" "PRINTF" "SPRINTF" "SCANF" "FSCANF" "SSCANF")
+    "VACIETIS.LIBC.STDIO.H" |SYSTEM|::|INTERN-EXPORT|)
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|T| |COMMON-LISP|::|T|))
+#Y(#:|186 236 (deflibcpkg #:vacietis.libc.stdio.h (:shadow #:remove) ...)-12-13|
+   #15Y(00 00 00 00 00 00 00 00 20 01 DA 31 D9 19 01) ("VACIETIS.LIBC.STDIO.H")
+   (|COMMON-LISP|::|T| |COMMON-LISP|::|NIL| |COMMON-LISP|::|NIL|))
