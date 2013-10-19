@@ -52,7 +52,10 @@
 
 (defun/1 localtime (pSec)
   "Like gmtime(), but returns the local time rather than Greenwich Mean Time."
-)
+  (let ((seconds (car (get-decoded-time)))
+	(minutes (cadr (get-decoded-time)))
+	(
+  (defparameter pSec (make-tm)))
 
 (defun/1 ctime (pSec)
   "Generates a string representing the local date and time of the form: Wed Jun 30 21:49:08 1993\n"

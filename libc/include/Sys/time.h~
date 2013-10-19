@@ -25,7 +25,6 @@ struct timezone {
 #define	DST_WET		3	/* Western European dst */
 #define	DST_MET		4	/* Middle European dst */
 #define	DST_EET		5	/* Eastern European dst */
-#define time_t int;
 
 /*
  * Operations on timevals.
@@ -70,5 +69,3 @@ struct tm {
 extern	struct tm *gmtime(), *localtime();
 extern	char *asctime(), *ctime();
 #endif
-
-int clock();
