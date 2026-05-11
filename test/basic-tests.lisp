@@ -186,6 +186,13 @@ char *foo[6];
 sprintf(foo, \"%-5c\", 'X');"
   "X    ")
 
+(eval-test typedef-bool
+ "#include <stdbool.h>
+typedef bool bool_bf;
+bool_bf on = 1;
+on;"
+  1)
+
 (eval-test typedef
   "typedef int Baz;
 Baz baz = 4;
@@ -199,7 +206,7 @@ BAR;"
   1)
 
 (eval-test define-define1
-  "#define fo0 (x, y) x >> y
+  "#define fo0(x, y) x >> y
 #define Bar fo0
 Bar(0xFFF, 2);"
   1023)

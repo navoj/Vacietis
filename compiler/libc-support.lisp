@@ -16,6 +16,10 @@
   "Lisp-1 defun; makes function pointers work."
   `(progn
      (defun ,name ,arglist
+       (declare (optimize (speed 0) (debug 3)
+                          ;; FIXME: Why do minor warnings result in load errors?
+                          #+sbcl (sb-ext:inhibit-warnings 3)))
+        
        ,@body)
      (defparameter ,name (vacietis.c:mkptr& (symbol-function ',name)))))
 
@@ -39,7 +43,7 @@
       (%load-c-file it *compiler-state*))))
 
 (defmacro libc-dir ()
-  (directory-namestring (or *load-truename* *compile-file-truename*)))
+  (directory-namestring (or *compile-file-truename* *load-truename*)))
 
 (defmacro load-libc-file (file libc-dir)
   `(eval-when (:compile-toplevel :load-toplevel)

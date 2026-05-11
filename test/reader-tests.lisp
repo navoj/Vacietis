@@ -714,3 +714,256 @@ getchar();"
 
 ;; (reader-test unclosed-string
 ;;   "\"foo")
+
+;; Handle empty defines.
+(reader-test preprocessor-define-only
+  "#define PREPROCESSOR_DEFINE_ONLY
+#ifdef PREPROCESSOR_DEFINE_ONLY
+int preprocessor_define_only = 1;
+#endif
+#ifndef PREPROCESSOR_DEFINE_ONLY
+int preprocessor_define_only = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_define_only 1)))
+
+;; Treat line continuation backslash as whitespace.
+(reader-test ignore-line-continuation-character
+  "int \\
+ignore_line_continuation_character = 3;"
+  (cl:progn (cl:defparameter ignore_line_continuation_character 3)))
+
+;; Fix parsing of decimal 0
+(reader-test parse-decimal-zero
+  "#if 0
+int preprocessor_else = 1;
+#endif")
+
+;; Handle #else, test 1.
+(reader-test preprocessor-else
+  "#if 0
+int preprocessor_else = 1;
+#else
+int preprocessor_else = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_else 2)))
+
+;; Handle #else, test 2.
+(reader-test preprocessor-parentheses
+  "#if (0 && 1)
+int preprocessor_parentheses = 1;
+#else
+int preprocessor_parentheses = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_parentheses 2)))
+
+;; Handle #else, test 3.
+(reader-test preprocessor-not
+  "#if (!0 && 1)
+int preprocessor_not = 1;
+#else
+int preprocessor_not = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_not 1)))
+
+;; Handle defined operator, test 1.
+(reader-test preprocessor-defined-false
+  "#if defined PREPROCESSOR_DEFINED_FALSE
+int preprocessor_defined_false = 1;
+#else
+int preprocessor_defined_false = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_defined_false 2)))
+
+;; Handle defined operator, test 2.
+(reader-test preprocessor-not-defined
+  "#if ! defined PREPROCESSOR_NOT_DEFINED
+int preprocessor_not_defined = 1;
+#else
+int preprocessor_not_defined = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_not_defined 1)))
+
+;; Handle defined operator, test 3.
+(reader-test preprocessor-defined-true
+  "#define PREPROCESSOR_DEFINED_TRUE
+#if defined PREPROCESSOR_DEFINED_TRUE
+int preprocessor_defined_true = 1;
+#else
+int preprocessor_defined_true = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_defined_true 1)))
+
+;; Handle defined operator, test 4.
+(reader-test preprocessor-defined-complex
+  "#define SOMETHING 0
+#define PREPROCESSOR_DEFINED_COMPLEX
+#if (defined PREPROCESSOR_DEFINED_COMPLEX && ! defined NOT_DEFINED && SOMETHING)
+int preprocessor_defined_complex = 1;
+#else
+int preprocessor_defined_complex = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_defined_complex 2)))
+
+;; Handle line continuation in preprocessor.
+(reader-test preprocessor-defined-complex-wrapped
+  "#define SOMETHING 3
+#define PREPROCESSOR_DEFINED_COMPLEX_WRAPPED
+#if (defined PREPROCESSOR_DEFINED_COMPLEX_WRAPPED \\
+     && ! defined NOT_DEFINED && SOMETHING)
+int preprocessor_defined_complex_wrapped = 1;
+#else
+int preprocessor_defined_complex_wrapped = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_defined_complex_wrapped 1)))
+
+;; Support using undefined macros as values.
+(reader-test preprocessor-use-undefined-macro
+  "#if PREPROCESSOR_USE_UNDEFINED_MACRO
+int preprocessor_use_undefined_macro = 1;
+#else
+int preprocessor_use_undefined_macro = 2;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_use_undefined_macro 2)))
+
+;; Macro with one argument.
+(reader-test preprocessor-macro-with-one-argument
+  "#define test 3
+#define MACRO_WITH_ONE_ARGUMENT(argument) argument
+int preprocessor_macro_with_one_argument = MACRO_WITH_ONE_ARGUMENT(test);"
+  (cl:progn (cl:defparameter preprocessor_macro_with_one_argument 3)))
+
+;; Macro with no concatenation.
+;; Note: gcc produces a failure for this fragment:
+;; error: ‘__argument’ undeclared here (not in a function)
+(reader-test preprocessor-no-concatenation
+  "#define __test 3
+#define MACRO_NO_CONCATENATION(argument) __argument
+int preprocessor_macro_no_concatenation = MACRO_NO_CONCATENATION(test);"
+  (cl:progn (cl:defparameter preprocessor_macro_no_concatenation 3)))
+
+;; Macro with concatenation.
+(reader-test preprocessor-macro-with-concatenation
+  "#define __test 3
+#define MACRO_WITH_CONCATENATION(argument) __##argument
+int preprocessor_macro_with_concatenation = MACRO_WITH_CONCATENATION(test);"
+  (cl:progn (cl:defparameter preprocessor_macro_with_concatenation 3)))
+
+;; Macro with double concatenation.
+(reader-test preprocessor-double-concatenation
+  "#define __test__ 4
+#define DOUBLE_CONCATENATION(argument) __##argument##__
+int preprocessor_double_concatenation = DOUBLE_CONCATENATION(test);"
+  (cl:progn (cl:defparameter preprocessor_double_concatenation 4)))
+
+;; Macro with double concatenation argument trim.
+(reader-test preprocessor-double-concatenation-trim
+  "#define __test__ 4
+#define DOUBLE_CONCATENATION_TRIM(argument) __##argument##__
+int double_concatenation_trim = DOUBLE_CONCATENATION_TRIM ( test );"
+  (cl:progn (cl:defparameter double_concatenation_trim 4)))
+
+;; Preprocessor #elif.
+(reader-test preprocessor-elif
+  "#if 0
+# define _GL_ATTRIBUTE_DEPRECATED 3
+#elif 3
+# define _GL_ATTRIBUTE_DEPRECATED 5
+#endif
+int preprocessor_elif = _GL_ATTRIBUTE_DEPRECATED;"
+  (cl:progn (cl:defparameter preprocessor_elif 5)))
+
+;; Preprocessor indentation after #.
+(reader-test preprocessor-indentation
+  "# if 0
+# define _GL_ATTRIBUTE_DEPRECATED 3
+# elif 0
+# define _GL_ATTRIBUTE_DEPRECATED 5
+# else
+# define _GL_ATTRIBUTE_DEPRECATED 8
+# endif
+int preprocessor_indentation = _GL_ATTRIBUTE_DEPRECATED;"
+  (cl:progn (cl:defparameter preprocessor_indentation 8)))
+
+(reader-test preprocessor-long
+  "# define PREPROCESSOR_LONG 33L
+int preprocessor_long = PREPROCESSOR_LONG;"
+  (cl:progn (cl:defparameter preprocessor_long 33)))
+
+(reader-test preprocessor-long-lowercase
+  "# define PREPROCESSOR_LONG 33l
+int preprocessor_long = PREPROCESSOR_LONG;"
+  (cl:progn (cl:defparameter preprocessor_long 33)))
+
+(reader-test preprocessor-nested
+  "#define PREPROCESSOR_NESTED_DEFINED
+#if 0
+# if 0
+   int preprocessor_nested = 1;
+# else
+#  ifdef PREPROCESSOR_NESTED_DEFINED
+    int preprocessor_nested = 4;
+#  else
+    int preprocessor_nested = 3;
+#  endif
+# endif
+#else
+# ifndef PREPROCESSOR_NESTED_NOT_DEFINED
+#  if 0
+    int preprocessor_nested = 2;
+#  else
+    int preprocessor_nested = 9;
+#  endif
+# else
+   int preprocessor_nested = 8;
+# endif
+#endif"
+  (cl:progn (cl:defparameter preprocessor_nested 9)))
+
+(reader-test preprocessor-defined-value
+  "#define PREPROCESSOR_DEFINED_VALUE 1
+#if defined PREPROCESSOR_DEFINED_VALUE || defined PREPROCESSOR_UNDEFINED_VALUE
+int preprocessor_defined_value = 3;
+#else
+int preprocessor_defined_value = 4;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_defined_value 3)))
+
+(reader-test preprocessor-empty-define-only
+  "#define PREPROCESSOR_EMPTY_DEFINE_ONLY
+")
+
+(reader-test preprocessor-use-empty-define
+  "#define PREPROCESSOR_USE_EMPTY_DEFINE
+PREPROCESSOR_USE_EMPTY_DEFINE
+")
+
+(reader-test preprocessor-use-empty-define-own-line
+  "#define PREPROCESSOR_USE_EMPTY_DEFINE_OWN_LINE
+int use_empty_define_own_line_1 = 8;
+PREPROCESSOR_USE_EMPTY_DEFINE_OWN_LINE
+#if 1
+int use_empty_define_own_line_2 = 3;
+#endif"
+  (cl:progn (cl:defparameter use_empty_define_own_line_1 8))
+  (cl:progn (cl:defparameter use_empty_define_own_line_2 3)))
+
+(reader-test preprocessor-inline-comment
+  "#define _GL_FLOAT_EXPONENT_STRLEN_BOUND(min, max)  \\
+  (      -100 < (min) && (max) <     100 ? 3       \\
+   :    -1000 < (min) && (max) <    1000 ? 4       \\
+   :   -10000 < (min) && (max) <   10000 ? 5       \\
+   :  -100000 < (min) && (max) <  100000 ? 6       \\
+   : -1000000 < (min) && (max) < 1000000 ? 7       \\
+   : 8 /* not a tight bound */)
+int preprocessor_inline_comment = 1;"
+  (cl:progn (cl:defparameter preprocessor_inline_comment 1)))
+
+(reader-test preprocessor-character-backslash
+  "#if ('\\\\' == 92)
+int preprocessor_character_backslash = 1;
+#endif"
+  (cl:progn (cl:defparameter preprocessor_character_backslash 1)))
+
+(reader-test sizeof-string
+  "char format[sizeof \"%-+ 0*.*Lg\"];"
+  (cl:progn (cl:defparameter format (vacietis:allocate-memory 10))))

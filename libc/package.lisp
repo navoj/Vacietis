@@ -138,6 +138,20 @@
    #:memchr
    #:memcmp))
 
+(deflibcpkg #:vacietis.libc.stdbool.h)
+
+(deflibcpkg #:vacietis.libc.fcntl.h)
+
+(deflibcpkg #:vacietis.libc.sys/types.h)
+
+(deflibcpkg #:vacietis.libc.sys/stat.h)
+
+(deflibcpkg #:vacietis.libc.unistd.h)
+
+(deflibcpkg #:vacietis.libc.limits.h)
+
+(deflibcpkg #:vacietis.libc.float.h)
+
 (deflibcpkg #:vacietis.libc.stdarg.h
   (:export
    #:va_list

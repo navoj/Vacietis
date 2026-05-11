@@ -6,7 +6,7 @@
 (in-package #:vacietis.c)
 
 (cl:defparameter vacietis::*type-qualifiers*
-  #(static const signed unsigned extern auto register))
+  #(static const signed unsigned extern auto register volatile))
 
 (cl:defparameter vacietis::*ops*
   #(= += -= *= /= %= <<= >>= &= ^= |\|=| ? |:| |\|\|| && |\|| ^ & == != < > <= >= << >> ++ -- + - * / % ! ~ -> |.| |,|))
@@ -77,15 +77,28 @@
   `(loop with c do (setf c (c-read-char))
         ,@body))
 
-(defun next-char (&optional (eof-error? t))
-  "Returns the next character, skipping over whitespace and comments"
-  (loop-reading
-     while (case c
-             ((nil)                     (when eof-error?
-                                          (read-error "Unexpected end of file")))
-             (#\/                       (%maybe-read-comment))
-             ((#\Space #\Newline #\Tab) t))
-     finally (return c)))
+(defun at-end-of-line ()
+  (let ((*readtable* (copy-readtable)))
+    (set-syntax-from-char #\Newline #\a)
+    (char-equal (peek-char t %in) #\Newline)))
+
+(defun next-char (&optional (eof-error? t)
+                    (skip-space-tab? t) (skip-newlines? t))
+  "Returns the next character, skipping over comments"
+  (let ((backslash-seen nil))
+    (loop-reading
+      while (case c
+              ((nil)           (when eof-error?
+                                 (read-error "Unexpected end of file")))
+              ((#\/)           (%maybe-read-comment))
+              ((#\Space #\Tab) skip-space-tab?)
+              ((#\\)           (if (at-end-of-line)
+                                   (setf backslash-seen t)
+                                   nil))
+              ((#\Newline)     (if backslash-seen
+                                   (progn (setf backslash-seen nil) t)
+                                   skip-newlines?)))
+      finally (return c))))
 
 (defun make-buffer (&optional (element-type t))
   (make-array 10 :adjustable t :fill-pointer 0 :element-type element-type))
@@ -94,8 +107,16 @@
   (let ((string-buffer (make-buffer 'character)))
     (loop-reading
        while (and c (funcall predicate c))
-       do (vector-push-extend c string-buffer)
+       do (unless (or (char= c #\\) (char= c #\Newline))
+            (vector-push-extend c string-buffer))
        finally (when c (c-unread-char c)))
+    string-buffer))
+
+(defun pp-read-line ()
+  (let ((string-buffer (make-buffer 'character)))
+    (loop with c do (setf c (next-char nil nil nil))
+          while (and c (not (char-equal c #\Newline)))
+          do (vector-push-extend c string-buffer))
     string-buffer))
 
 (defun %maybe-read-comment ()
@@ -142,19 +163,23 @@
                   (setf value (+ (* 10 value) (digit-value c))))
                  ((or (char-equal c #\E) (char= c #\.))
                   (return (read-float value c)))
+                 ((char-equal c #\L)
+                  (return value))
                  (t
                   (c-unread-char c)
                   (return value)))))))
 
 (defun read-c-number (c)
   (prog1 (if (char= c #\0)
-             (let ((next (peek-char nil %in)))
-               (if (digit-char-p next 8)
-                   (read-octal)
-                   (case next
-                     ((#\X #\x) (c-read-char) (read-hex))
-                     (#\.       (c-read-char) (read-float 0 #\.))
-                     (otherwise 0))))
+             (let ((next (peek-char nil %in nil)))
+               (if next
+                 (if (digit-char-p next 8)
+                     (read-octal)
+                     (case next
+                       ((#\X #\x) (c-read-char) (read-hex))
+                       (#\.       (c-read-char) (read-float 0 #\.))
+                       (otherwise 0)))
+                 0))
              (read-decimal c))
     (loop repeat 2 do (when (find (peek-char nil %in nil nil) "ulf" :test #'eql)
                         (c-read-char)))))
@@ -197,61 +222,63 @@
 ;;; preprocessor
 
 (defvar preprocessor-if-stack ())
-
-(defun pp-read-line ()
-  (let (comment-follows?)
-   (prog1
-       (slurp-while (lambda (c)
-                      (case c
-                        (#\Newline)
-                        (#\/ (if (find (peek-char nil %in nil nil) "/*")
-                                 (progn (setf comment-follows? t) nil)
-                                 t))
-                        (t t))))
-     (c-read-char)
-     (when comment-follows?
-       (%maybe-read-comment)))))
+(defvar *preprocessing* nil)
 
 (defmacro lookup-define ()
   `(gethash (read-c-identifier (next-char))
             (compiler-state-pp *compiler-state*)))
 
-(defun starts-with? (str x)
-  (string= str x :end1 (min (length str) (length x))))
-
 (defun preprocessor-skip-branch ()
   (let ((if-nest-depth 1))
     (loop for line = (pp-read-line) do
-         (cond ((starts-with? line "#if")
+         (cond ((ppcre:scan "# *if" line)
                 (incf if-nest-depth))
-               ((and (starts-with? line "#endif")
+               ((ppcre:scan "# *ifdef" line)
+                (incf if-nest-depth))
+               ((ppcre:scan "# *ifndef" line)
+                (incf if-nest-depth))
+               ((and (ppcre:scan "# *else" line)
+                     (= 1 if-nest-depth))
+                (return))
+               ((and (ppcre:scan "# *endif" line)
                      (= 0 (decf if-nest-depth)))
                 (pop preprocessor-if-stack)
                 (return))
-               ((and (starts-with? line "#elif")
+               ((and (ppcre:scan "# *elif" line)
                      (= 1 if-nest-depth))
                 (case (car preprocessor-if-stack)
-                  (if (when (preprocessor-test (pp-read-line))
+                  (  if (when (preprocessor-test
+                               (subseq line (multiple-value-bind (_ end)
+                                                (ppcre:scan "# *elif" line)
+                                              (declare (ignore _)) end)))
                         (setf (car preprocessor-if-stack) 'elif)
                         (return)))
                   (elif nil)
                   (else (read-error "Misplaced #elif"))))))))
 
 (defun preprocessor-test (line)
-  (let ((exp (with-input-from-string (%in line)
-               (read-infix-exp (read-c-exp (next-char))))))
-    (not (eql 0 (eval `(symbol-macrolet
-                           ,(let ((x))
-                                 (maphash (lambda (k v)
-                                            (push (list k v) x))
-                                          (compiler-state-pp *compiler-state*))
-                                 x)
-                         ,exp))))))
+  (let ((*preprocessing* t))
+    (let ((exp (with-input-from-string (%in line)
+                 (read-infix-exp (read-c-exp (next-char))))))
+      (not (eql 0 (eval `(symbol-macrolet
+                             ,(let ((x))
+                                (maphash (lambda (k v)
+                                           ;; Do not use special
+                                           ;; variables -- e.g., as
+                                           ;; set by (define EXIT_SUCCESS 0)
+                                           ;; -- in this symbol-macrolet.
+                                           (unless k
+                                             (push (list k v) x)))
+                                         (compiler-state-pp *compiler-state*))
+                                x)
+                           ,exp)))))))
 
 (defun fill-in-template (args template subs)
   (ppcre:regex-replace-all
    (format nil "([^a-zA-Z])?(~{~a~^|~})([^a-zA-Z0-9])?" args)
-   template
+   ;; This works, but is more permissive than GCC.  See reader-test
+   ;; preprocessor-no-concatenation.
+   (ppcre:regex-replace-all "##" template "")
    (lambda (match r1 arg r2)
      (declare (ignore match))
      (format nil "~A~A~A"
@@ -278,6 +305,14 @@
                         (vector-push-extend last acc)))))
     (map 'list #'identity acc)))
 
+(defun find-include (include-file)
+  (dolist (path (compiler-state-include-paths *compiler-state*))
+    (let ((include (merge-pathnames
+                    (merge-pathnames include-file path)
+                    (or *load-truename* *compile-file-truename*
+                        *default-pathname-defaults*))))
+      (when (cl-fad:file-exists-p include) (return include)))))
+
 (defun read-c-macro (%in sharp)
   (declare (ignore sharp))
   ;; preprocessor directives need to be read in a separate namespace
@@ -285,7 +320,7 @@
     (case pp-directive
       (vacietis.c:define
        (setf (lookup-define)
-             (if (eql #\( (peek-char t %in))
+             (if (eql #\( (peek-char nil %in))
                  (let ((args     (c-read-delimited-strings t))
                        (template (string-trim '(#\Space #\Tab) (pp-read-line))))
                    (lambda (substitutions)
@@ -313,7 +348,10 @@
                              (or *load-truename* *compile-file-truename*
                                  *default-pathname-defaults*)))
                            *compiler-state*)
-             (include-libc-file include-file))))
+             (let ((non-system-include-file (find-include include-file)))
+               (if non-system-include-file
+                   (%load-c-file non-system-include-file *compiler-state*)
+                   (include-libc-file include-file))))))
       (vacietis.c:if
        (push 'if preprocessor-if-stack)
        (unless (preprocessor-test (pp-read-line))
@@ -803,7 +841,11 @@
   (case c
     (#\# (read-c-macro %in c))
     (#\; (values))
-    (t   (%read-c-statement (read-c-exp c)))))
+    (t   (let ((expression (read-c-exp c)))
+           (if expression
+               (%read-c-statement expression)
+               ;; Allow for an empty macro on a line by itself.
+               (values))))))
 
 (defun read-c-identifier (c)
   ;; assume inverted readtable (need to fix for case-preserving lisps)
@@ -857,14 +899,25 @@
                            (string
                             it)
                            (function
-                            (funcall it (c-read-delimited-strings)))))
+                            (funcall it (c-read-delimited-strings t)))))
                         %in
                         (make-concatenated-stream *macro-stream* %in))
-                  (read-c-exp (next-char)))
+                  ;; Peek to next Newline.
+                  (if (at-end-of-line)
+                      ;; Macro on a line by itself.
+                      (values)
+                      (read-c-exp (next-char))))
                  ((gethash symbol (compiler-state-enums *compiler-state*))
                   it)
                  (t
-                  symbol))))
+                  (if *preprocessing*
+                      (if (string-equal symbol "defined")
+                          (if (lookup-define) 1 0)
+                          (if (gethash symbol
+                                       (compiler-state-pp *compiler-state*))
+                              symbol
+                              0))
+                      symbol)))))
             (t
              (case c
                (#\" (read-c-string %in c))
@@ -886,6 +939,10 @@
                      collect (read-c-statement (next-char))))
         (or exp1 (values)))))
 
+(defun read-c-newline (%in c)
+  (when *line-number* (incf *line-number*))
+  (values))
+
 (macrolet
     ((def-c-readtable ()
        `(defreadtable c-readtable
@@ -894,6 +951,8 @@
          ;; unary and prefix operators
          ,@(loop for i in '(#\+ #\- #\~ #\! #\( #\& #\*)
               collect `(:macro-char ,i 'read-c-toplevel nil))
+
+         (:macro-char #\Newline 'read-c-newline nil)
 
          (:macro-char #\# 'read-c-macro nil)
 
@@ -929,7 +988,11 @@
 (defun %load-c-file (*c-file* *compiler-state*)
   (let ((*readtable*   c-readtable)
         (*line-number* 1))
-    (load *c-file*)))
+    (prog1 (load *c-file*)
+      (when *load-verbose*
+        #+sbcl (let ((sb-fasl::*load-depth* (1+ sb-fasl::*load-depth*)))
+                 (sb-fasl::load-fresh-line))
+        (format t "done    ~s~%" *c-file*)))))
 
-(defun load-c-file (file)
-  (%load-c-file file (make-compiler-state)))
+(defun load-c-file (file &key include-paths)
+  (%load-c-file file (make-compiler-state :include-paths include-paths)))
