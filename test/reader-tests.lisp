@@ -30,8 +30,7 @@
 (reader-test string-escape1
   "_FOO = \"foo\\nbar\";"
   ;; yup, \n is an escape and not a format string!
-  (= _FOO (string-to-char* "foo
-bar")))
+  (= _FOO (string-to-char* #.(cl:format cl:nil "foo~%bar"))))
 
 (reader-test identifier1
   "_foo;"
@@ -73,8 +72,7 @@ bar")))
 
 (reader-test function-call1
   "printf(\"hello, world\\n\");"
-  (printf (string-to-char* "hello, world
-")))
+  (printf (string-to-char* #.(cl:format cl:nil "hello, world~%"))))
 
 (reader-test function-call2
   "check_gc_signals_unblocked_or_lose(0);"
@@ -363,8 +361,7 @@ fahr = fahr + step;
   (for (cl:nil cl:nil (<= fahr upper) cl:nil)
     (cl:tagbody
        (= celsius (/ (* 5 (- fahr 32)) 9))
-       (printf (string-to-char* "%d	%d
-") fahr celsius)
+       (printf (string-to-char* #.(cl:format cl:nil "%d~c%d~%" #\Tab)) fahr celsius)
        (= fahr (+ fahr step)))))
 
 (reader-test multiple-declaration0
@@ -376,11 +373,10 @@ fahr = fahr + step;
 {
 printf(\"hello, world\\n\");
 }
-"
+  "
   (vacietis::defun/1 main ()
     (cl:prog* ()
-       (printf (string-to-char* "hello, world
-")))))
+       (printf (string-to-char* #.(cl:format cl:nil "hello, world~%"))))))
 
 (reader-test c99-style-for-init
   "for (int x = 0; x < 10; x++)

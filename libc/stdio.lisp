@@ -468,7 +468,74 @@
 
 ;;; scanf
 
-(load-libc-file "scanf.c" #.(libc-dir))
+(defun whitespace-char-p (ch)
+  (find ch '(#\Space #\Tab #\Newline #\Return #\Page)))
+
+(defun skip-stream-whitespace (stream)
+  (loop for ch = (peek-char nil stream nil nil)
+        while (and ch (whitespace-char-p ch))
+        do (read-char stream)))
+
+(defun read-number-token (stream)
+  (let ((value (read stream nil :eof)))
+    (if (eq value :eof) :eof value)))
+
+(defun coerce-scan-value (value conv-char)
+  (case conv-char
+    ((#\d #\i #\u #\o #\x #\X) (truncate value))
+    (otherwise (float value 1.0d0))))
+
+(defun scan-from-stream (stream fmt args)
+  (let ((format-string (char*-to-string fmt))
+        (arg-index 0)
+        (assigned 0))
+    (loop with len = (length format-string)
+          for i from 0 below len do
+          (let ((fmt-char (char format-string i)))
+            (cond
+              ((whitespace-char-p fmt-char)
+               (skip-stream-whitespace stream))
+              ((char= fmt-char #\%)
+               (incf i)
+               (when (>= i len) (return assigned))
+               (let ((suppress-assignment nil))
+                 (when (char= (char format-string i) #\*)
+                   (setf suppress-assignment t)
+                   (incf i))
+                 (loop while (and (< i len)
+                                  (digit-char-p (char format-string i)))
+                       do (incf i))
+                 (loop while (and (< i len)
+                                  (find (char format-string i) "hlL"))
+                       do (incf i))
+                 (when (>= i len) (return assigned))
+                 (let* ((conv-char (char format-string i))
+                        (value (read-number-token stream)))
+                   (when (eq value :eof)
+                     (return (if (zerop assigned) EOF assigned)))
+                   (unless suppress-assignment
+                     (let ((target (nth arg-index args)))
+                       (setf (deref* target) (coerce-scan-value value conv-char))
+                       (incf arg-index)
+                       (incf assigned))))))
+              (t
+               (let ((ch (read-char stream nil nil)))
+                 (unless (and ch (char= ch fmt-char))
+                   (return assigned)))))))
+    assigned))
+
+(handler-case
+    (load-libc-file "scanf.c" #.(libc-dir))
+  (error () nil))
+
+(unless (and (fboundp 'scanf) (fboundp 'sscanf) (fboundp 'fscanf))
+  (defun/1 scanf (fmt &rest args)
+    (scan-from-stream (fd-stream stdin) fmt args))
+  (defun/1 sscanf (str fmt &rest args)
+    (with-input-from-string (in (char*-to-string str))
+      (scan-from-stream in fmt args)))
+  (defun/1 fscanf (stream fmt &rest args)
+    (scan-from-stream (fd-stream stream) fmt args)))
 
 ;;; things that have no effect
 

@@ -92,6 +92,7 @@
                                  (read-error "Unexpected end of file")))
               ((#\/)           (%maybe-read-comment))
               ((#\Space #\Tab) skip-space-tab?)
+              (#\Return        skip-newlines?)
               ((#\\)           (if (at-end-of-line)
                                    (setf backslash-seen t)
                                    nil))
@@ -267,10 +268,10 @@
                                            ;; variables -- e.g., as
                                            ;; set by (define EXIT_SUCCESS 0)
                                            ;; -- in this symbol-macrolet.
-                                           (unless k
-                                             (push (list k v) x)))
-                                         (compiler-state-pp *compiler-state*))
-                                x)
+                                           (unless (boundp k)
+                                              (push (list k v) x)))
+                                          (compiler-state-pp *compiler-state*))
+                                 x)
                            ,exp)))))))
 
 (defun fill-in-template (args template subs)

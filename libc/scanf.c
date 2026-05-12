@@ -6,39 +6,39 @@
 
 // adapted from ZetaC
 
-#define __initrest(pointers) va_list pointers; va_start(pointers, -1)
-
-
 int scanf (char *fmt, ...) {
-  __initrest(places);
-  return _scnf ((int (*)())NULL, ungetc, stdin, fmt, places);
+  va_list places;
+  va_start(places, fmt);
+  return _scnf (NULL, ungetc, stdin, fmt, places);
 }
 
-int _sgetc(char **strp) {
+int _sgetc(void *strp_ptr) {
+  char **strp = strp_ptr;
   char c;
   c = *(*strp)++;
   return c ? c : EOF;
 }
 
 int sscanf (char *str, char *fmt, ...) {
-  __initrest(places);
-  return _scnf (_sgetc, (int (*)())NULL, (FILE *)&str, fmt, places);
+  va_list places;
+  va_start(places, fmt);
+  return _scnf (_sgetc, NULL, &str, fmt, places);
 }
 
 int fscanf (FILE *stream, char *fmt, ...) {
-  __initrest(places);
+  va_list places;
+  va_start(places, fmt);
   return _scnf (fgetc, ungetc, stream, fmt, places);
 }
 
 
-int
-_scnf (int (*getfn)(), int (*ungetfn)(), FILE *stream, char *fmt, va_list pointers)
+int _scnf (int getfn, int ungetfn, FILE *stream, char *fmt, va_list pointers)
 {
   int nchars = -1, ires = 0, noassign, fieldwidth, ival;
   int idecp, ifldig, complement, i;
   char fmtc, argsize, sign, expsign, *cp, flbuf[128], scanset[256];
 
-#define _scnfin()             (++nchars, getfn ? (*getfn) (stream) : getchar())
+#define _scnfin()             (++nchars, getfn ? ((int (*)())getfn) (stream) : getchar())
 #define DEFAULT_FIELD_WIDTH   8388607
 #define TRUE                  1
 #define FALSE                 0
@@ -55,7 +55,7 @@ _scnf (int (*getfn)(), int (*ungetfn)(), FILE *stream, char *fmt, va_list pointe
     else if (fmtc != '%') {
       if (ic == fmtc) ic = _scnfin();
       else {
-        if (ungetfn) (*ungetfn) (ic, stream);
+        if (ungetfn) ((int (*)())ungetfn) (ic, stream);
         return ires;
       }
     }
